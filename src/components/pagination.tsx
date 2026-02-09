@@ -7,11 +7,7 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
-
-interface paginationProps {
-    startPage: number;
-    setStartPage: React.Dispatch<React.SetStateAction<number>>;
-}
+import { paginationProps } from "@/types"
 
 export function PaginationDemo({ startPage, setStartPage }: paginationProps) {
 
@@ -39,8 +35,8 @@ export function PaginationDemo({ startPage, setStartPage }: paginationProps) {
                 </PaginationItem>
 
 
-                {totalPaginationNo.map((val) => (
-                    <PaginationItem>
+                {totalPaginationNo.map((val, index) => (
+                    <PaginationItem key={index}>
                         <PaginationLink className={val === startPage ? "bg-primary text-primary-foreground" : ""}>{val}</PaginationLink>
                     </PaginationItem>
                 ))}

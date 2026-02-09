@@ -1,19 +1,18 @@
 import { Button } from "@/components/ui/button"
+import { blog } from "@/types"
+import axios from "axios"
 import Link from "next/link"
 
-interface tagsProps {
-    id: number;
-    title: string;
-    body: string;
-    tags: string[];
-}
 
-export default async function blogId({ params, }: { params: { blogId: string } }) {
-    const { blogId } = await params
+export default async function blogId({ params }: { params: { blogId: string } }) {
+    const { blogId } = params
     const URL = `https://dummyjson.com/posts/${blogId}`
-    const res = await fetch(URL)
-    const data: tagsProps = await res.json()
+    // const res = await fetch(URL)
+    // const data: blog = await res.json()
     // console.log(data)
+
+    const res = await axios.get<blog>(URL)
+    const data = res.data
     return (
         <div className="min-h-screen bg-dark-background  px-4 py-4">
             <div className="mb-4 flex justify-start">
